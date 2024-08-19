@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signature Generator</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
             max-width: 900px;
             margin: 20px auto;
         }
@@ -28,53 +26,49 @@
         .name {
             top: 169.32px; /* 4.48 cm */
             left: 48px; /* 1.27 cm */
-            font-family: 'Poppins', sans-serif;
-            font-size: 32px;
-            font-weight: 600; /* Poppins Bold */
+            font-size: 25px;
+            font-weight: bold;
             width: 438.425px; /* 11.6 cm */
             height: 61.228px; /* 1.62 cm */
         }
         .designation {
             top: 236.598px; /* 6.26 cm */
             left: 46.866px; /* 1.24 cm */
-            font-family: 'Poppins', sans-serif;
             font-size: 20px;
-            font-weight: 300; /* Poppins Thin */
             width: 604.724px; /* 16.0 cm */
             height: 41.953px; /* 1.11 cm */
         }
         .department {
             top: 277.795px; /* 7.35 cm */
             left: 46.866px; /* 1.24 cm */
-            font-family: 'Poppins', sans-serif;
             font-size: 20px;
-            font-weight: 300; /* Poppins Thin */
             width: 604.724px; /* 16.0 cm */
             height: 41.953px; /* 1.11 cm */
         }
         .phone {
             top: 170px; /* 4.48 cm */
             left: 1160px; /* 29.44 cm */
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
+            font-size: 18px;
             width: 390px; /* 9.91 cm */
             height: 18px; /* 0.94 cm */
         }
         .email {
             top: 214px; /* 5.63 cm */
             left: 1160px; /* 29.44 cm */
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
+            font-size: 18px;
             width: 390px; /* 9.91 cm */
             height: 18px; /* 0.94 cm */
         }
         .website {
             top: 258px; /* 6.78 cm */
             left: 1160px; /* 29.44 cm */
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
+            font-size: 18px;
             width: 390px; /* 9.91 cm */
             height: 18px; /* 0.94 cm */
+        }
+        .website a {
+            color: inherit;
+            text-decoration: none;
         }
         .social-media a {
             display: block;
@@ -110,6 +104,14 @@
             margin: 5px 0 10px 0;
             box-sizing: border-box;
         }
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -134,6 +136,7 @@
         <input type="text" id="email" placeholder="Enter Email Address"><br>
         
         <button onclick="generateSignature()">Generate Signature</button>
+        <button class="download-btn" onclick="downloadSignature()">Download Signature</button>
     </div>
 
     <div class="signature-container" id="signatureContainer">
@@ -142,7 +145,7 @@
         <div class="department" id="signatureDepartment"></div>
         <div class="phone" id="signaturePhone"></div>
         <div class="email" id="signatureEmail"></div>
-        <div class="website"><a href="http://www.tresori.com" style="color: inherit; text-decoration: none;">www.tresori.com</a></div>
+        <div class="website"><a href="http://www.tresori.com" target="_blank">www.tresori.com</a></div>
         
         <div class="social-media">
             <a href="https://www.instagram.com/tresoriconceptstore/" class="instagram" target="_blank"></a>
@@ -166,6 +169,17 @@
             document.getElementById('signatureDepartment').textContent = department;
             document.getElementById('signaturePhone').innerHTML = `<a href="tel:${phone}" style="color: inherit; text-decoration: none;">${phone}</a>`;
             document.getElementById('signatureEmail').innerHTML = `<a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
+        }
+
+        function downloadSignature() {
+            const signatureContainer = document.getElementById('signatureContainer').outerHTML;
+            const blob = new Blob([signatureContainer], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'signature.html';
+            a.click();
+            URL.revokeObjectURL(url);
         }
     </script>
 
