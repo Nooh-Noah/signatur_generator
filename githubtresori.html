@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+        .signature-container {
+            position: relative;
+            width: 1536px; /* 40.64 cm converted to pixels */
+            height: 384px; /* 10.16 cm converted to pixels */
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            background-size: cover;
+            background-image: url('https://github.com/Nooh-Noah/TresoriImage/blob/main/Tresori%20Signature%20Background%20Image.png?raw=true');
+        }
+        .signature-container div {
+            position: absolute;
+            color: #7D7167;
+        }
+        .name {
+            top: 169.32px; /* 4.48 cm */
+            left: 48px; /* 1.27 cm */
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 600; /* Poppins Bold */
+            width: 438.425px; /* 11.6 cm */
+            height: 61.228px; /* 1.62 cm */
+        }
+        .designation {
+            top: 236.598px; /* 6.26 cm */
+            left: 46.866px; /* 1.24 cm */
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 300; /* Poppins Thin */
+            width: 604.724px; /* 16.0 cm */
+            height: 41.953px; /* 1.11 cm */
+        }
+        .department {
+            top: 277.795px; /* 7.35 cm */
+            left: 46.866px; /* 1.24 cm */
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 300; /* Poppins Thin */
+            width: 604.724px; /* 16.0 cm */
+            height: 41.953px; /* 1.11 cm */
+        }
+        .phone {
+            top: 170px; /* 4.48 cm */
+            left: 1160px; /* 29.44 cm */
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            width: 390px; /* 9.91 cm */
+            height: 18px; /* 0.94 cm */
+        }
+        .email {
+            top: 214px; /* 5.63 cm */
+            left: 1160px; /* 29.44 cm */
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            width: 390px; /* 9.91 cm */
+            height: 18px; /* 0.94 cm */
+        }
+        .website {
+            top: 258px; /* 6.78 cm */
+            left: 1160px; /* 29.44 cm */
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            width: 390px; /* 9.91 cm */
+            height: 18px; /* 0.94 cm */
+        }
+        .social-media a {
+            display: block;
+            position: absolute;
+        }
+        .instagram {
+            top: 324.661px; /* 8.59 cm */
+            left: 1276.724px; /* 33.78 cm */
+            width: 29.858px; /* 0.79 cm */
+            height: 29.858px; /* 0.79 cm */
+            background: transparent;
+        }
+        .linkedin {
+            top: 334.11px; /* 8.84 cm */
+            left: 1379.528px; /* 36.5 cm */
+            width: 29.858px; /* 0.79 cm */
+            height: 36.661px; /* 0.97 cm */
+            background: transparent;
+        }
+        .facebook {
+            top: 330.709px; /* 8.75 cm */
+            left: 1460.031px; /* 38.63 cm */
+            width: 29.858px; /* 0.79 cm */
+            height: 32.126px; /* 0.85 cm */
+            background: transparent;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Email Signature Generator</h2>
+    <div class="form-container">
+        <!-- The image upload option is no longer necessary since the image is hosted online -->
+        
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" placeholder="Enter Name"><br>
+        
+        <label for="designation">Designation:</label><br>
+        <input type="text" id="designation" placeholder="Enter Designation"><br>
+        
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" placeholder="Enter Department"><br>
+        
+        <label for="phone">Mobile Number:</label><br>
+        <input type="text" id="phone" placeholder="Enter Mobile Number"><br>
+        
+        <label for="email">Email Address:</label><br>
+        <input type="text" id="email" placeholder="Enter Email Address"><br>
+        
+        <button onclick="generateSignature()">Generate Signature</button>
+    </div>
+
+    <div class="signature-container" id="signatureContainer">
+        <div class="name" id="signatureName"></div>
+        <div class="designation" id="signatureDesignation"></div>
+        <div class="department" id="signatureDepartment"></div>
+        <div class="phone" id="signaturePhone"></div>
+        <div class="email" id="signatureEmail"></div>
+        <div class="website"><a href="http://www.tresori.com" style="color: inherit; text-decoration: none;">www.tresori.com</a></div>
+        
+        <div class="social-media">
+            <a href="https://www.instagram.com/tresoriconceptstore/" class="instagram" target="_blank"></a>
+            <a href="https://www.linkedin.com/company/tresoriconceptstore/mycompany/" class="linkedin" target="_blank"></a>
+            <a href="https://www.facebook.com/tresoriconceptstore" class="facebook" target="_blank"></a>
+        </div>
+    </div>
+
+    <script>
+        function generateSignature() {
+            // Getting input values
+            const name = document.getElementById('name').value;
+            const designation = document.getElementById('designation').value;
+            const department = document.getElementById('department').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            // Setting values in the signature
+            document.getElementById('signatureName').textContent = name;
+            document.getElementById('signatureDesignation').textContent = designation;
+            document.getElementById('signatureDepartment').textContent = department;
+            document.getElementById('signaturePhone').innerHTML = `<a href="tel:${phone}" style="color: inherit; text-decoration: none;">${phone}</a>`;
+            document.getElementById('signatureEmail').innerHTML = `<a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
+        }
+    </script>
+
+</body>
+</html>
